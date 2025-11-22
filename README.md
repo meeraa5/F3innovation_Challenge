@@ -43,5 +43,3 @@ f3-frost/
 - **PDF report** answering the required questions, with figures exported to `reports/figures/`.
 - **Station‑wise and horizon‑wise metrics** with LOSO CV.
 
-## License
-MIT (adjust as needed).
