@@ -1,0 +1,26 @@
+seed: 1337
+horizons: [3, 6, 12, 24]
+
+classification:
+  algo: lightgbm
+  params:
+    num_leaves: 64
+    learning_rate: 0.05
+    n_estimators: 1000
+    subsample: 0.8
+    colsample_bytree: 0.9
+  calibration: isotonic
+
+regression:
+  algo: lightgbm
+  params:
+    n_estimators: 1200
+    learning_rate: 0.03
+    num_leaves: 128
+    subsample: 0.8
+    colsample_bytree: 0.9
+  quantiles: [0.1, 0.5, 0.9]
+
+tuning:
+  use_optuna: true
+  n_trials: 60
