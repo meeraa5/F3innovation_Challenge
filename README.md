@@ -19,7 +19,7 @@ The goal of this project is to deliver a station-level frost risk forecasting sy
 
 Plaintext  
 F3innovation\_Challenge/  
-├── Dashboard/                   \# HTML/CSS/JS assets for frost dashboard prototype  
+├── Dashboard/                   \# assets for frost dashboard prototype  
 ├── configs/                     \# Config files (paths, hyperparameters, etc.)  
 ├── notebooks/  
 │   └── FrostByte\_Final\_Pipeline.ipynb  \# Main end-to-end notebook (NDP-tested)  
@@ -161,7 +161,6 @@ Python
 ## **💬 Contact**
 
 For questions, suggestions, or collaboration:
-
-* Open an issue or pull request on this repository.  
+  
 * Reach out to the **Team FrostByte** members via the contact info in the challenge report.
 
