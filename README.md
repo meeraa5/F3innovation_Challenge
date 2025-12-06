@@ -1,157 +1,249 @@
-# F3 Frost Risk Forecasting — Starter Repo
+❄️ FrostByte – F3 Innovate Frost Risk Forecasting Challenge
+Welcome to the repository for Team FrostByte’s submission to the F3 Innovate Frost Risk Forecasting Data Challenge.
+The goal of this project is to deliver a station-level frost risk forecasting system for California agriculture using CIMIS (California Irrigation Management Information System) hourly weather data.
 
-This repository is a **turn‑key scaffold** for F3 Innovate's Frost Risk Forecasting Data Challenge.  
-It implements a reproducible pipeline with **station‑aware cross‑validation**, **probabilistic calibration**, and **clean reporting**.
+The pipeline:
 
-## Quickstart
+Ingests 15+ years of hourly data from 18 CIMIS stations
 
-```bash
-# 1) Create env (choose one)
-# Using uv
-uv venv && source .venv/bin/activate && uv pip install -r requirements.txt
+Cleans, reindexes, and augments it with temporal and lagged features
 
-# Or: Poetry
-# poetry install && poetry shell
+Trains horizon-specific XGBoost models for:
 
-# 2) One‑command run (small smoke test)
-make all
+Minimum temperature prediction at 3, 6, 12, 24 hours
 
-# 3) Train full models (once data is prepared)
-make train eval report
-```
+Probability of frost events (temperature ≤ 0°C)
 
-### National Data Platform (NDP)
-If you're working on the NDP, use the provided `Dockerfile` or `requirements.txt` to reproduce the environment.  
-Point `configs/data.yaml` to NDP-mounted datasets.
+Exposes an interactive CLI tool for querying frost risk by station and timestamp
 
-## Repository Layout
-```
-f3-frost/
-  configs/
-  src/
-    data/            # loaders & feature builders
-    models/          # model definitions & calibration
-    eval/            # metrics & plots
-  notebooks/
-  reports/
-  Makefile
-  requirements.txt or pyproject.toml
-```
+📁 Repository Structure
+text
+F3innovation_Challenge/
+├── Dashboard/                     # HTML/CSS/JS assets for frost dashboard prototype
+├── configs/                       # Config files (paths, hyperparameters, etc.)
+├── notebooks/
+│   └── FrostByte_Final_Pipeline.ipynb   # Main end-to-end notebook (NDP-tested)
+├── src/                           # (Optional) Python modules for pipeline components
+├── .gitignore
+├── .pre-commit-config.yaml
+├── Dockerfile                     # Containerized runtime (optional)
+├── FrostByte_Final_Pipeline.ipynb # Convenience copy at repo root
+├── Makefile                       # Automation helpers (build, run, format, etc.)
+├── README.md                      # This file
+└── requirements.txt               # Python dependencies
+The CIMIS data file (e.g., cimis_all_stations.csv.gz) is not committed and should be placed in the appropriate data folder or working directory when you run the pipeline.
 
-## Deliverables
-- **Reproducible pipeline** (CLI or notebook) with GitHub link.
-- **PDF report** answering the required questions, with figures exported to `reports/figures/`.
-- **Station‑wise and horizon‑wise metrics** with LOSO CV.
+⚙️ Dependencies & Setup
+This project has a very light dependency footprint:
 
+text
+pandas>=2.2
+numpy>=1.26
+xgboost>=2.1
+1. Clone the Repository
+bash
+git clone https://github.com/meeraa5/F3innovation_Challenge.git
+cd F3innovation_Challenge
+2. (Optional) Create a Virtual/Conda Environment
+bash
+conda create -n frostbyte python=3.12
+conda activate frostbyte
+3. Install Requirements
+Using pip directly:
 
+bash
+pip install numpy pandas xgboost
+Or from requirements.txt:
 
+bash
+pip install -r requirements.txt
+💾 Data Expectations
+The main pipeline expects a compressed CIMIS dataset:
 
-[give me same report as this report give use the g....md](https://github.com/user-attachments/files/23972269/give.me.same.report.as.this.report.give.use.the.g.md)
-## **❄️ F3 Innovate Frost Risk Forecasting Challenge \-\> Team**
+File name (example): cimis_all_stations.csv.gz
 
-$$Your Team Name$$  
-Welcome to the repository for Team
+Contents: 18-station hourly observations with columns such as:
 
-$$Your Team Name$$  
-'s submission to the **F3 Innovate Frost Risk Forecasting Challenge (Sprint \#1)**. Our objective was to build a generalized, data-driven machine learning pipeline to predict frost events ($T\_{min} \\le 0^\\circ C$) and forecast minimum temperatures across 18 CIMIS stations in California.
+Station metadata: Stn Id, Stn Name, CIMIS Region
 
-We conducted a rigorous comparative analysis of four distinct machine learning architectures to benchmark performance against traditional heuristics:
+Time: Date, Hour (PST)
 
-* **Gradient Boosting (XGBoost)** 🏆 *(Champion Model)*  
-* **Support Vector Machines (SVM)**  
-* **k-Nearest Neighbors (kNN)**  
-* **Neural Networks (MLP)**
+Weather: Air Temp (C), Dew Point (C), Rel Hum (%), Wind Speed (m/s), Wind Dir (0-360), Soil Temp (C)
 
-## **📁 Repository Structure**
+Radiation & water: Sol Rad (W/sq.m), ETo (mm), Precip (mm)
 
-├── data/               \# Training and testing datasets (Filled & Cleaned)  
-├── src/  
-│   └── model\_pipeline.py   \# Main pipeline: Data Loading \-\> FE \-\> Modeling \-\> Eval  
-├── challenge\_report.pdf    \# Official Project Report (Submission Deliverable)  
-├── project\_answers.md      \# Responses to specific challenge questions  
-├── requirements.txt        \# Required Python packages  
-└── README.md               \# This file
+QC flags (which are dropped in preprocessing)
 
-## **⚙️ Installation & Setup**
+The notebook:
 
-Ensure you have Python 3.8+ installed. We recommend setting up a virtual environment.
+Decompresses cimis_all_stations.csv.gz → cimis_all_stations_unzipped.csv
 
-### **1\. Environment Setup**
+Reads the CSV into a DataFrame
 
-\# Create a virtual environment (Optional but recommended)  
-conda create \-n "f3-frost" python=3.10  
-conda activate f3-frost
+Deletes the unzipped file after loading
 
-\# Install dependencies  
-pip install \-r requirements.txt
+Make sure the .gz file is in your current working directory (or update the file path at the top of the notebook/script).
 
-### **2\. Data Configuration**
+🚀 How to Run the FrostByte Pipeline
+You can either run the final notebook or a script version (if you export the notebook).
 
-Ensure your data files are placed in the data/ directory. If your paths differ, update the CONFIG dictionary in src/model\_pipeline.py:
+Option 1: Run via Notebook
+Open FrostByte_Final_Pipeline.ipynb in Jupyter / VS Code / NDP.
 
-CONFIG \= {  
-    'train\_file\_path': 'data/train\_set\_filled\_w\_Mean\_cleaned.csv',   
-    'test\_file\_path': 'data/test\_set\_filled\_w\_Mean\_cleaned.csv'  
+Ensure the path to cimis_all_stations.csv.gz is correct.
+
+Run all cells from top to bottom.
+
+The notebook is organized into three phases:
+
+PHASE 1 – Data Loading & Preprocessing
+
+Decompress .gz file
+
+Rename key columns (Stn Id → station_id, Air Temp (C) → air_temp_c, etc.)
+
+Convert Date + Hour (PST) into a proper UTC datetime
+
+Reindex each station onto a continuous hourly time grid, backfilling short gaps
+
+Drop QC columns and coerce numeric types
+
+Impute missing numeric values with column means
+
+Add temporal features:
+
+month, hour
+
+hour_sin, hour_cos (cyclical encoding)
+
+Generate lagged features per station:
+
+temp_lag_1, temp_lag_3, temp_lag_6
+
+dew_lag_1, dew_lag_3, dew_lag_6
+
+Construct horizon-specific targets:
+
+y_temp: minimum future temperature in the next H hours
+
+y_event: frost event (1 if y_temp <= 0.0, else 0)
+
+PHASE 2 – Model Training (XGBoost)
+
+For each horizon in [3, 6, 12, 24]:
+
+Train XGBClassifier on y_event
+
+Train XGBRegressor on y_temp
+
+Uses tuned hyperparameters stored in TUNED_PARAMS
+
+Performs safety checks:
+
+sanitize_global_params removes any NaN values
+
+sanitize_params enforces integer types for n_estimators, max_depth
+
+Returns a dictionary:
+
+python
+trained_models = {
+  3:  {'clf': XGBClassifier, 'reg': XGBRegressor},
+  6:  {'clf': XGBClassifier, 'reg': XGBRegressor},
+  12: {'clf': XGBClassifier, 'reg': XGBRegressor},
+  24: {'clf': XGBClassifier, 'reg': XGBRegressor},
 }
+PHASE 3 – Interactive Frost Predictor (CLI)
 
-### **3\. Run Pipeline**
+Lists all available station IDs and full datetime coverage
 
-To train all models and generate the performance metrics table:
+Repeatedly prompts:
 
-python src/model\_pipeline.py
+Station ID (e.g., 80, 71) or -1 to exit
 
-## **🚀 Pipeline Overview**
+Date and Hour in YYYY-MM-DD HH (UTC)
 
-We implemented a robust evaluation pipeline to test generalization across diverse topographies.
+Shows current conditions at that timestamp:
 
-### **🔧 Preprocessing Steps**
+Air temp, dew point, relative humidity, wind speed, lagged temperature
 
-* **Imputation:** Handled missing values using mean imputation to maintain time-series continuity.  
-* **Target Generation:** Calculated rolling minimum temperatures for horizons $h \\in \\{3, 6, 12, 24\\}$ hours.  
-* **Cyclical Encoding:** Transformed hour\_of\_day into Sine/Cosine features to preserve temporal proximity (e.g., 23:00 is close to 00:00).  
-* **Lag Features:** Engineered 1hr, 3hr, and 6hr lags for Temperature and Dew Point to capture "cooling velocity" specific to local microclimates.
+For each horizon, prints:
 
-### **🧠 Modeling Strategy**
+Predicted minimum temperature
 
-|
+Frost probability
 
-| Model Type | Role | Key Configurations |  
-| XGBoost | Primary Predictor | Depth: 6, LR: 0.05, Trees: 150\. Handles non-linear interactions best. |  
-| SVM | Baseline Comparison | Linear kernel, Probability=True. Tests hyperplane separation. |  
-| kNN | Spatial Baseline | $k=5$. Tests if frost events cluster in feature space. |  
-| MLP (Neural Net) | Deep Learning Baseline | Dense (64-32-1), ReLU, Adam Optimizer. |
+Risk label:
 
-## **📊 Performance Summary**
+HIGH RISK (Frost Likely) if probability > 0.25
 
-We prioritized **Expected Calibration Error (ECE)** as our primary metric, as growers need reliable probabilities, not just binary classifications.
+LOW RISK (No Frost) otherwise
 
-| Horizon (h) | Model | ROC-AUC | ECE (Calibration) | Brier Score |  
-| 12 Hours | XGBoost | 0.96 | 0.02 | 0.03 |  
-| 12 Hours | Neural Net | 0.91 | 0.04 | 0.05 |  
-| 12 Hours | SVM | 0.89 | 0.05 | 0.06 |  
-| 12 Hours | kNN | 0.88 | 0.07 | 0.08 |  
-*Note: The XGBoost model consistently demonstrated the lowest calibration error, making it the most trustworthy tool for high-stakes decision-making.*
+Option 2: Run as a Script
+If you export the notebook into src/frostbyte_pipeline.py (or similar), you can execute:
 
-## **📄 Project Report**
+bash
+python FrostByte_Final_Pipeline.ipynb  # via NDP / Jupyter
+# or
+python src/frostbyte_pipeline.py       # if converted to .py
+🧠 Modeling Overview
+Model family: Gradient boosting via XGBoost
 
-For a deep dive into our methodology, feature engineering logic, and a detailed discussion on **Generalization vs. Heuristics**, please refer to our full report:
+Features:
 
-📘 [**challenge\_report.pdf**](https://www.google.com/search?q=./challenge_report.pdf)
+python
+[
+    'air_temp_c',
+    'rel_hum_percent',
+    'dew_point_c',
+    'wind_speed_m_s',
+    'hour_sin',
+    'hour_cos',
+    'temp_lag_1',
+    'temp_lag_3',
+    'temp_lag_6'
+]
+Targets:
 
-## **✨ Acknowledgments**
+y_temp: rolling min temperature in the next H hours
 
-This project was developed for the **F3 Innovate Frost Risk Forecasting Challenge**. We utilized data provided by the National Data Platform and CIMIS stations.
+y_event: frost indicator (y_temp <= 0.0)
 
-## **👥 Team**
+Design choices:
 
-$$Your Team Name$$
+Lagged features computed per station to respect microclimate dynamics
 
-* $$Your Name$$  
-  \- *Lead Data Scientist*  
-* $$Teammate Name$$  
-  \- *Model Engineer*
+FixedForwardWindowIndexer to build leakage-free rolling targets
 
-## **💬 Contact**
+Chronological splitting to emulate real forecasting (future never leaks into past)
 
-For questions regarding the codebase or methodology, please open an issue or reach out via email.
+Horizon-specific hyperparameters for classification and regression
 
+📊 Outputs & Dashboard
+The notebook prints model training logs and interactive predictions in the console.
+
+The Dashboard/ directory contains the initial HTML structure for a frost risk dashboard that can later be wired to:
+
+The trained models
+
+An API or batch inference pipeline
+
+Example CLI output is included in the notebook outputs for quick verification.
+
+🔮 Future Directions
+Planned enhancements (described in the report and scaffolded in the repo):
+
+Real-time deployment using AWS Lambda + S3 + a hosted dashboard
+
+Neural weather architectures (TCNs, LSTMs, Transformers) for sequence modeling
+
+Integration of ERA5 / HRRR synoptic data to improve 12–24 hour forecasts
+
+A fully functional web dashboard powered by the models in this repo
+
+💬 Contact
+For questions, suggestions, or collaboration:
+
+Open an issue or pull request on this repository
+
+Or reach out to the FrostByte team via the contact info provided in the challenge report
