@@ -4,9 +4,10 @@ Here's the step-by-step process to locally view the web page using the provided 
 
 Ensure you have **Node.js** and **npm** (Node Package Manager) installed on your system. You can check this by running:
 
-Bash  
+` 
 node \-v  
 npm \-v
+`
 
 ## **2\. Project Setup**
 
@@ -16,9 +17,9 @@ Navigate to the root directory of your project (e.g., `frost-risk-dashboard/`) i
 
 You must install all the libraries listed in the `package.json` file, including **React**, **Vite**, **Recharts**, and **Tailwind CSS**.
 
-Bash  
+`  
 npm install
-
+`
 ### **B. Ensure Tailwind CSS is Configured**
 
 The build process relies on your Tailwind configuration (`tailwind.config.js`) and the CSS import (`src/index.css`) to generate the correct styles. The `npm install` step should be sufficient if the configuration files are present as suggested.
