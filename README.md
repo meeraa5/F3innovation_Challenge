@@ -1,11 +1,10 @@
 
+# **❄️ FrostByte – F3 Innovate Frost Risk Forecasting Challenge**
 
-# **❄️ FrostByte: F3 Innovate Frost Risk Forecasting**
+**Welcome to the repository for Team FrostByte's submission to the F3 Innovate Frost Risk Forecasting Data Challenge, hosted in partnership with UC San Diego and the National Data Platform (NDP).**
 
-### **Safeguarding California's Agriculture through Data-Driven Microclimate Forecasting**
-
-**Team FrostByte's submission for the F3 Innovate Frost Risk Forecasting Data Challenge.**
-
+**Our goal: Build an accurate, station-level frost risk forecasting system for California agriculture using 15 years of hourly CIMIS weather observations.**  
+ **This project advances data-driven microclimate modeling and supports growers across California’s Central Valley — a region that produces one-quarter of the nation’s food**
 
 ---
 
@@ -28,10 +27,10 @@
 
 | Forecast Horizon | Task | Model | ROC-AUC | MAE (∘C) |
 | :---- | :---- | :---- | :---- | :---- |
-| **3 Hours** | **Frost Event** | **XGBClassifier** | **0.9X** | **N/A** |
-| **6 Hours** | **Frost Event** | **XGBClassifier** | **0.8X** | **N/A** |
-| **12 Hours** | **Min Temp** | **XGBRegressor** | **N/A** | **1.2X** |
-| **24 Hours** | **Min Temp** | **XGBRegressor** | **N/A** | **1.5X** |
+| **3 Hours** | **Frost Event** | **XGBClassifier** | **0.96** | **0.54** |
+| **6 Hours** | **Frost Event** | **XGBClassifier** | **0.95** | **0.884** |
+| **12 Hours** | **Min Temp** | **XGBRegressor** | **0.94** | **1.21** |
+| **24 Hours** | **Min Temp** | **XGBRegressor** | **0.92** | **1.50** |
 
 **📉 Calibration: Our probabilistic models achieve a Brier Score of \[INSERT SCORE\], ensuring that a predicted 80% risk actually corresponds to frost 80% of the time.**
 
@@ -42,10 +41,6 @@
 **Team FrostByte developed an end-to-end pipeline leveraging 15 years of hourly CIMIS weather observations (over 2.3 million data points) to train time-series-aware XGBoost models.**
 
 ### **⚙️ The Pipeline**
-
-**Code snippet**
-
-**graph LR**
 
     **A\[Raw CIMIS Data\] \--\> B(Preprocessing)**
 
@@ -119,25 +114,27 @@
 
 **cd F3innovation\_Challenge**
 
-### **2\. Environment Setup**
+## **⚙️ Environment Setup**
 
-**You can set up the environment using conda or pip.**
+### **1\. Clone the Repository**
 
-**Option A: Conda (Recommended)**
+**`git clone https://github.com/meeraa5/F3innovation_Challenge.git`**
 
-**Bash**
+**`cd F3innovation_Challenge`**
 
-**conda create \-n frostbyte python=3.9**
+### **2\. Install Dependencies**
 
-**conda activate frostbyte**
+**You can install only the core dependencies using:**
 
-**pip install \-r requirements.txt**
+**`pip install numpy pandas xgboost`**
 
-**Option B: Pip**
+**Or install everything listed in `requirements.txt`:**
 
-**Bash**
+**`pip install -r requirements.txt`**
 
-**pip install \-r requirements.txt**
+### **Recommended**
+
+* **Python 3.12**
 
 ### **3\. Data Acquisition**
 
@@ -163,10 +160,13 @@
 
 ---
 
-## 💬 Contact 
+**📋 Challenge Report** 
 
-For questions, suggestions, or collaboration:
+---
 
-* Open an issue or pull request on this repository
-* Or reach out to the FrostByte team via the contact info provided in the challenge report 
+## **👥 Team FrostByte**
+
+* **Rishil Patel**  
+* **Devarsh Shroff**  
+* **Meera Vyas**
 
