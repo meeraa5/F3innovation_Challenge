@@ -163,9 +163,10 @@
 
 ---
 
-## **👥 Team FrostByte**
+## **💬 Contact **
 
-* **Rishil Patel**  
-* **Devarsh Shroff**  
-* **Meera Vyas**
+For questions, suggestions, or collaboration:
+
+* Open an issue or pull request on this repository
+* Or reach out to the FrostByte team via the contact info provided in the challenge report 
 
