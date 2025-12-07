@@ -6,7 +6,6 @@
 
 **Team FrostByte's submission for the F3 Innovate Frost Risk Forecasting Data Challenge.**
 
-**Partnered with UC San Diego and the National Data Platform (NDP).**
 
 ---
 
