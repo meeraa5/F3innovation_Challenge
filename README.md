@@ -1,5 +1,4 @@
 
-[Untitled document (2).md](https://github.com/user-attachments/files/24014211/Untitled.document.2.md)
 # **❄️ FrostByte – F3 Innovate Frost Risk Forecasting Challenge**
 
 Welcome to the repository for **Team FrostByte's** submission to the **F3 Innovate Frost Risk Forecasting Data Challenge**, hosted in partnership with **UC San Diego** and the **National Data Platform (NDP)**.
