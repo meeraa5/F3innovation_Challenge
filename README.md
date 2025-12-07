@@ -1,10 +1,10 @@
 
 # **❄️ FrostByte – F3 Innovate Frost Risk Forecasting Challenge**
 
-**Welcome to the repository for Team FrostByte's submission to the F3 Innovate Frost Risk Forecasting Data Challenge, hosted in partnership with UC San Diego and the National Data Platform (NDP).**
+Welcome to the repository for Team FrostByte's submission to the F3 Innovate Frost Risk Forecasting Data Challenge, hosted in partnership with UC San Diego and the National Data Platform (NDP).
 
-**Our goal: Build an accurate, station-level frost risk forecasting system for California agriculture using 15 years of hourly CIMIS weather observations.**  
- **This project advances data-driven microclimate modeling and supports growers across California’s Central Valley — a region that produces one-quarter of the nation’s food**
+**Our goal:** Build an accurate, station-level frost risk forecasting system for California agriculture using 15 years of hourly CIMIS weather observations.
+ This project advances data-driven microclimate modeling and supports growers across California’s Central Valley — a region that produces one-quarter of the nation’s food
 
 ---
 
@@ -12,12 +12,19 @@
 
 **Frost events are a leading cause of economic damage in US agriculture. Historically, growers have relied on manual, localized methods to predict freezing temperatures, leading to reactive rather than proactive measures.**
 
-**The Goal: Build a robust machine learning system to deliver earlier and more reliable warnings.**
+**Goal:** Build a robust machine learning system to deliver earlier and more reliable warnings.
 
-**We aim to forecast two critical indicators:**
+We aim to forecast two critical indicators:
 
 1. **Frost Probability: The likelihood of air temperature dropping $\\le 0^\\circ \\text{C}$.**  
 2. **Minimum Temperature: Accurate regression predictions for crucial short-term horizons.**
+
+---
+
+**📋 Challenge Report** 
+
+Click the Link to View the Report : [FrostByte_Report.pdf](https://github.com/user-attachments/files/24014328/FrostByte_Report.pdf)
+
 
 ---
 
@@ -42,20 +49,6 @@
 
 ### **⚙️ The Pipeline**
 
-    **A\[Raw CIMIS Data\] \--\> B(Preprocessing)**
-
-    **B \--\> C{Feature Engineering}**
-
-    **C \--\>|Lag Features| D\[Temporal Context\]**
-
-    **C \--\>|Cyclical Time| D**
-
-    **D \--\> E\[XGBoost Ensemble\]**
-
-    **E \--\> F\[Probabilistic Output\]**
-
-    **E \--\> G\[Regression Output\]**
-
 ### **1\. Data Preprocessing**
 
 * **Standardization: Converted all timestamps from PST $\\to$ UTC to unify temporal alignment.**  
@@ -67,7 +60,7 @@
 **We engineered specific features to capture short-term weather dynamics:**
 
 * **Lag Features: temp\_lag\_1, temp\_lag\_3, temp\_lag\_6 to track recent cooling trends.**  
-* **Core Variables: Air Temperature ($^\\circ$C), Relative Humidity (%), Dew Point ($^\\circ$C), and Wind Speed (m/s).**
+* **Core Variables: Air Temperature (C), Relative Humidity (%), Dew Point (C), and Wind Speed (m/s).**
 
 ### **3\. Modeling Strategy**
 
@@ -86,55 +79,37 @@
 
 ## **💾 Repository Structure**
 
-**Plaintext**
+F3innovation\_Challenge/
+```
+├── Dashboard/                    
+├── notebooks/                    
+├── images/                      
+├── FrostByte\_Final\_Pipeline.ipynb
+├── requirements.txt             
+└── README.md                   
+```
 
-**F3innovation\_Challenge/**
+## 🛠️ Setup and Execution**
 
-**├── Dashboard/                    \# HTML/CSS/JS assets for the grower interface**
+### **1. Clone the Repository**
 
-**├── notebooks/                    \# Experimentation and exploratory analysis**
 
-**├── images/                       \# Project visuals and reliability diagrams**
+```
+git clone https://github.com/meeraa5/F3innovation\_Challenge.git
+cd F3innovation\_Challenge
+```
 
-**├── FrostByte\_Final\_Pipeline.ipynb\# PRIMARY: Run this for end-to-end training**
 
-**├── requirements.txt              \# Pip dependencies**
-
-**└── README.md                     \# Documentation**
-
----
-
-## **🛠️ Setup and Execution**
-
-### **1\. Clone the Repository**
-
-**Bash**
-
-**git clone https://github.com/meeraa5/F3innovation\_Challenge.git**
-
-**cd F3innovation\_Challenge**
-
-## **⚙️ Environment Setup**
-
-### **1\. Clone the Repository**
-
-**`git clone https://github.com/meeraa5/F3innovation_Challenge.git`**
-
-**`cd F3innovation_Challenge`**
-
-### **2\. Install Dependencies**
+### **2. Install Dependencies**
 
 **You can install only the core dependencies using:**
+```
+pip install numpy pandas xgboost
+#OR
+pip install -r requirements.txt
+```
 
-**`pip install numpy pandas xgboost`**
 
-**Or install everything listed in `requirements.txt`:**
-
-**`pip install -r requirements.txt`**
-
-### **Recommended**
-
-* **Python 3.12**
 
 ### **3\. Data Acquisition**
 
@@ -157,10 +132,6 @@
 * **\[ \] Deep Learning: Experiment with LSTMs and Temporal Convolutional Networks (TCNs) for deeper temporal dependency capture.**  
 * **\[ \] Synoptic Integration: Incorporate ERA5 / HRRR reanalysis data (cloud cover, cold-air advection).**  
 * **\[ \] User Interface: Develop a full React-based dashboard for growers with SMS alerts.**
-
----
-
-**📋 Challenge Report** 
 
 ---
 
