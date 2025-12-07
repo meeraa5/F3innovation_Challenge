@@ -95,8 +95,8 @@ F3innovation\_Challenge/
 
 
 ```
-git clone https://github.com/meeraa5/F3innovation\_Challenge.git
-cd F3innovation\_Challenge
+git clone https://github.com/meeraa5/F3innovation_Challenge.git
+cd F3innovation_Challenge
 ```
 
 
