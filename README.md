@@ -17,20 +17,16 @@ The goal of this project is to deliver a station-level frost risk forecasting sy
 
 ## **📂 Repository Structure**
 
-Plaintext  
+```
 F3innovation\_Challenge/  
-├── Dashboard/                   \# assets for frost dashboard prototype  
-├── configs/                     \# Config files (paths, hyperparameters, etc.)  
-├── notebooks/  
-│   └── FrostByte\_Final\_Pipeline.ipynb  \# Main end-to-end notebook (NDP-tested)  
-├── src/                         \# (Optional) Python modules for pipeline components  
-├── .gitignore  
-├── .pre-commit-config.yaml  
-├── Dockerfile                   \# Containerized runtime (optional)  
-├── FrostByte\_Final\_Pipeline.ipynb      \# Convenience copy at repo root  
-├── Makefile                     \# Automation helpers (build, run, format, etc.)  
-├── README.md                    \# This file  
-└── requirements.txt             \# Python dependencies
+├── Dashboard/...               (Contains Dashborad Elements and Files)
+├── notebooks/...                (Contains NoteBooks Used for Testing)
+├── .gitignore                  
+├── FrostByte_Final_Pipeline.ipynb       
+├── README.md                   
+└── requirements.txt            
+
+```
 
 **Note:** The CIMIS data file (e.g., `cimis_all_stations.csv.gz`) is not committed and should be placed in the appropriate data folder or working directory when you run the pipeline.
 
@@ -39,30 +35,26 @@ F3innovation\_Challenge/
 ## **⚙️ Dependencies & Setup**
 
 This project has a very light dependency footprint. We recommend **Python 3.12**.
-
-* `pandas>=2.2`  
-* `numpy>=1.26`  
-* `xgboost>=2.1`
+```
+pandas>=2.2  
+numpy>=1.26 
+xgboost>=2.1
+```
 
 ### **1\. Clone the Repository**
 
-Bash  
+``` 
 git clone https://github.com/meeraa5/F3innovation\_Challenge.git  
-cd F3innovation\_Challenge
+cd F3innovation_Challenge
+```
 
-### **2\. (Optional) Create a Environment**
 
-Bash  
-conda create \-n frostbyte python=3.12  
-conda activate frostbyte
-
-### **3\. Install Requirements**
-
-Bash  
-pip install \-r requirements.txt  
-\# OR  
+### **2\. Install Requirements**
+```  
+pip install -r requirements.txt  
+# OR  
 pip install numpy pandas xgboost
-
+```
 ---
 
 ## **💾 Data Expectations**
@@ -161,6 +153,5 @@ Python
 ## **💬 Contact**
 
 For questions, suggestions, or collaboration:
-  
 * Reach out to the **Team FrostByte** members via the contact info in the challenge report.
 
