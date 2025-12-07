@@ -1,9 +1,0 @@
-# Paths for data access; update to your environment/NDP paths
-raw_dir: data/raw
-proc_dir: data/processed
-features_path: data/processed/features.parquet
-
-# Station metadata (if provided separately)
-station_meta: data/raw/stations.csv
-station_id_col: station_id
-timestamp_col: timestamp
