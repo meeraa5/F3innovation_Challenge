@@ -163,7 +163,7 @@
 
 ---
 
-## **💬 Contact **
+## 💬 Contact 
 
 For questions, suggestions, or collaboration:
 
