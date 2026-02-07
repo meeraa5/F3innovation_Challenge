@@ -4,7 +4,7 @@
 Welcome to the repository for Team FrostByte's submission to the F3 Innovate Frost Risk Forecasting Data Challenge, hosted in partnership with UC San Diego and the National Data Platform (NDP).
 
 **Our goal:** Build an accurate, station-level frost risk forecasting system for California agriculture using 15 years of hourly CIMIS weather observations.
- This project advances data-driven microclimate modeling and supports growers across California’s Central Valley — a region that produces one-quarter of the nation’s food
+ This project advances data-driven microclimate modeling and supports growers across California’s Central Valley, a region that produces one-quarter of the nation’s food
 
 ---
 
