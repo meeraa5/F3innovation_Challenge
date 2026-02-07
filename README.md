@@ -139,5 +139,5 @@ pip install -r requirements.txt
 
 * **Rishil Patel**  
 * **Devarsh Shroff**  
-* **Meera Vyas**
+* **Meera Vyas - vmeeraa5@gmail.com**
 
